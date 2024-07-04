@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/contactForm/ContactForm"
+
+---
+
+<Layout title="Registro">
+<section class="flex flex-col w-full min-h-[100dvh] justify-center items-center  text-white">
+    <h1 class="color__gradiente font-bold text-[5rem] mb-11">Registro</h1>
+    <ContactForm client:load/>
+    <a class="mt-10 text-[1.3rem] hover:text-[--primary-60] transition ease" href="/">¿Ya tienes una cuenxta? Inicia Sesión</a>
+</section>
+
+</Layout>

@@ -1,0 +1,47 @@
+.form-register {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 36rem;
+    width: 100%;
+    background-color: var(--primary-20);
+    padding: 1.5rem;
+    border-radius: 16px;
+    min-height: 477.5px;
+
+}
+.form-register>*:not(:last-child, span) {
+    margin-bottom: 1.3rem;
+}
+.label {
+    font-size: 1.7rem;
+}
+.input {
+    padding: 1rem 1.5rem;
+    color: black;
+    font-size: 1.8rem;
+}
+.login-button {
+    font-size: 1.8rem;
+    padding: 1rem;
+    background: var(--primary-60);
+    border-radius: 11px;
+    cursor: pointer;
+    transition: .35s opacity;
+}
+.login-button:hover {
+    opacity: 0.75;
+}
+.login-button:active {
+    opacity: 0.5;
+}
+.error-message{
+    color: tomato;
+}
+.helper__text{
+    font-size: 1.4rem;
+}
+
+.helper__text--warning{
+    color: tomato;
+}
