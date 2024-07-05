@@ -1,9 +1,9 @@
-import './contactForm.css';
+import './registerForm.css';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '../../services/services';
 
-const ContactForm = () => {
+const RegisterForm = () => {
 	const {
 		register: formRegister,
 		handleSubmit,
@@ -16,7 +16,7 @@ const ContactForm = () => {
 		try {
 			const result = await register(data);
 			console.log('Registro exitoso', result);
-			if (result) navigation.navigate('/');
+			if (result) navigation.navigate('/login');
 		} catch (error) {
 			// console.error('Falló el registro:', error);
 			setErrorMessage('El registro falló. Ahorita no joven');
@@ -30,21 +30,6 @@ const ContactForm = () => {
 			className="form-register"
 			noValidate
 		>
-			{/* <Input
-        label="name"
-        name="name"
-        placeholder="Enter your name"
-        formRegister={formRegister}
-        pattern={{
-          value: /^\D/i,
-          message: "Nombre invalido",
-        }}
-        required={{
-          value: true,
-          message:"el nombre es requerido"
-        }}
-      /> */}
-
 			<label htmlFor="name" className="label">
 				Name
 			</label>
@@ -76,7 +61,7 @@ const ContactForm = () => {
 			<input
 				type="email"
 				id="email"
-				placeholder="@"
+				placeholder="Ingresa un email"
 				className="input input-password"
 				{...formRegister('email', {
 					required: {
@@ -129,6 +114,28 @@ const ContactForm = () => {
 					{errors.password.message}
 				</span>
 			)}
+	{/* 		<label htmlFor="confirmarPassword" className="label">
+				Confirmar Password
+			</label>
+			<input
+				type="password"
+				id="confirmarPassword"
+				placeholder="*******"
+				className="input"
+				{...formRegister('password', {
+					validate: (value) =>
+						value === getValues('password') ||
+						'Las contraseñas no coinciden.',
+				})}
+			/>
+			{errors.confirmarPassword && (
+				<span className="helper__text helper__text--alert">
+					{errors.confirmarPassword.message}
+				</span>
+			)}
+
+			{errorMessage && <p className="error-message">{errorMessage}</p>} */}
+
 			<label htmlFor="name" className="label">
 				User Name
 			</label>
@@ -150,27 +157,6 @@ const ContactForm = () => {
 				</span>
 			)}
 
-			{/* <label htmlFor="confirmarPassword" className="label">
-        Confirmar Password
-      </label>
-      <input
-        type="password"
-        id="confirmarPassword"
-        placeholder="*******"
-        className="input"
-        {...formRegister("confirmarPassword", {
-          validate: (value) =>
-            value === getValues("password") || "Las contraseñas no coinciden.",
-        })}
-      />
-      {errors.confirmarPassword && (
-        <span className="helper__text helper__text--alert">
-          {errors.confirmarPassword.message}
-        </span>
-      )} */}
-
-			{errorMessage && <p className="error-message">{errorMessage}</p>}
-
 			<input
 				type="submit"
 				value="Confirm"
@@ -181,4 +167,4 @@ const ContactForm = () => {
 	);
 };
 
-export default ContactForm;
+export default RegisterForm;

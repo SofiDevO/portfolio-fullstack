@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+// import { authGuard } from '../utils/authGuard/authGuard.js';
+//NECESITO IMPORTAR ESO XD PERO NO SOY MAIN ASTRO AIUDA
+//
+---
+<script>
+    import { authGuard } from '../utils/authGuard/authGuard'
+    authGuard();
+</script>
+
+<Layout title="dashboard">
+	<section
+		class="dashboard flex flex-col items-center justify-center w-full min-h-[100dvh]"
+	>
+		<h1 class="text-2xl text-white">Bienvenido</h1>
+	</section>
+</Layout>
