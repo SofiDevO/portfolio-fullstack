@@ -1,13 +1,48 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-    theme: {
-      extend: {
-        backgroundImage: {
-          'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        }
-
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+      colors: {
+        primary0: '#190230',
+        primary10: '#2b1560',
+        primary20: '#442288',
+        primary30: '#5529ae',
+        primary40: '#6632cf',
+        primary50: '#7644e3',
+        primary60: '#8664ee',
+        primary70: '#a491f4',
+        primary80: '#c2b9f9',
+        primary90: '#dcd8fc',
+        primary95: '#edeafd',
+        primary99: '#f4f4fe',
+        primary100: '#ffffff',
+        secondary0: '#1c050e',
+        secondary10: '#490e25',
+        secondary20: '#782344',
+        secondary30: '#87224a',
+        secondary40: '#ae285f',
+        secondary50: '#c93978',
+        secondary60: '#dc5898',
+        secondary70: '#e77fb4',
+        secondary80: '#f1b0d3',
+        secondary90: '#f7d3e7',
+        secondary95: '#fae9f3',
+        secondary99: '#fcf3f8',
+        secondary100: '#ffffff',
+        surface: '#4F4360',
+        surfaceVariant: '#e0d8e7',
+        surfaceDim: '#998da9',
+        surfaceBridge: '#d6cdee',
+        onSurfacePrimary: '#2b1560',
+        onPrimary: '#edeafd',
+        onSurfaceSecondary: '#fae9f3',
+        onSecondary: '#fae9f3',
       },
     },
-    plugins: [],
-  };
+  },
+  plugins: [],
+};
