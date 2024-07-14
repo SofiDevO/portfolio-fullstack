@@ -1,0 +1,8 @@
+.portfolio__elements {
+    max-width: var(--max-width);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    align-content: center;
+  }

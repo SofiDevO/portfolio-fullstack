@@ -1,11 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
-import CardBlog from '../../components/CardBlog.astro';
+import CardBlog from '../../components/molecules/CardBlog.astro';
 import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/header/Header.astro';
+import Header from '../../components/organisms/header/Header.astro';
 import { menuBlog } from '../../components/data/menuData';
-import Footer from '../../components/Footer/Footer.astro';
+import Footer from '../../components/organisms/Footer/Footer.astro';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );

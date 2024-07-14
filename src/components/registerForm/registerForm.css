@@ -45,3 +45,6 @@
 .helper__text--warning{
     color: tomato;
 }
+.helper__text--alert{
+    color:gold;
+}

@@ -1,13 +1,13 @@
 ---
 import About from '../components/About/About.astro';
-import BlogHome from '../components/BlogHome.astro';
+import BlogHome from '../components/organisms/BlogHome.astro';
 import { mainMenu } from '../components/data/menuData';
-import Footer from '../components/Footer/Footer.astro';
-import Header from '../components/header/Header.astro';
-import Hero from '../components/hero/Hero.astro';
-import Portfolio from '../components/Portfolio.astro';
+import Footer from '../components/organisms/Footer/Footer.astro';
+import Header from '../components/organisms/header/Header.astro'
+import Hero from '../components/organisms/hero/Hero.astro';
 import Skills from '../components/skills/Skills.astro';
 import Layout from '../layouts/Layout.astro';
+import Portfolio from '../components/organisms/Portfolio/Portfolio';
 ---
 
 <Layout title="Jhon Doe | Fullstack Developer">
@@ -16,7 +16,7 @@ import Layout from '../layouts/Layout.astro';
 		<Hero />
 		<About />
 		<Skills />
-		<Portfolio />
+		<Portfolio client:load/>
 		<BlogHome />
 	</main>
 	<Footer/>
