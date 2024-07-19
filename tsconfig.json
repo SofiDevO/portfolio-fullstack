@@ -2,6 +2,21 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "strictNullChecks": true,
-    "allowJs": true
+    "allowJs": true,
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"paths": {
+			"@src/*": ["src/*"],
+			"@components/*": ["src/components/*"],
+			"@atoms/*": ["src/components/atoms/*"],
+			"@molecules/*": ["src/components/molecules/*"],
+			"@organisms/*": ["src/components/organisms/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@pages/*": ["src/pages/*"],
+			"@services/*": ["src/services/*"],
+			"@data/*": ["src/data/*"],
+			"@styles/*": ["src/styles/*"],
+		}
   }
-}
+  }
+// Si no estás usando TypeScript esto no va a funcionar

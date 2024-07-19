@@ -1,5 +1,5 @@
 import { HTTPError } from './httpError/httpError';
-
+import { ServiceManager } from './serviceManager';
 export const BASE_URL = 'https://sofi.igarrux.com';
 export const baseURL = 'https://sofi.igarrux.com';
 
@@ -35,5 +35,9 @@ const login = async (data) => {
 };
 
 // Get User data
-
+export const contentService = new ServiceManager(
+	'https://sofi.igarrux.com',
+	'cors',
+	'include'
+);
 export { register, login };

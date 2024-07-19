@@ -1,15 +1,22 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
-
-import sitemap from "@astrojs/sitemap";
+import basicSsl from '@vitejs/plugin-basic-ssl';
+import sitemap from '@astrojs/sitemap';
+import fs from 'fs';
 
 // https://astro.build/config
 export default defineConfig({
-  devToolbar: {
-    enabled: false
+  devServer:{
+    https: {
+      key: fs.readFileSync('localhost-key.pem'),
+      cert: fs.readFileSync('localhost.pem'),
+    },
   },
-  site: 'https://salchipapas.com/',
+	devToolbar: {
+		enabled: false,
+	},
+	site: 'https://salchipapas.com/',
 
-  integrations: [react(), tailwind(), sitemap()]
+	integrations: [react(), tailwind(), sitemap()],
 });

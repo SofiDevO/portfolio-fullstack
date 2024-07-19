@@ -15,8 +15,8 @@ const LoginForm = () => {
 	const onSubmit = async (data) => {
 		try {
 			await login(data);
-			localStorage.setItem("loginStatus", "ok")
-			navigation.navigate('/dashboard');
+			// localStorage.setItem("loginStatus", "ok")
+			// navigation.navigate('/dashboard');
 		} catch (error) {
 			if (error instanceof HTTPError) return setErrorMessage(error.msg);
 			setErrorMessage('No se pudo iniciar sesion. Intenta de nuevo');

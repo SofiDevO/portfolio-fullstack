@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { getPortafolioData } from '../../data/portfolioData';
 import Card from "../../molecules/CardPortfolioDashboad/CardPortfolioDashboad"
 import '../../organisms/Portfolio/portfolio.css';
+
 const CardPortfolioDashboad = () => {
-    useEffect(() => {
+  useEffect(() => {
         const $cards = document.querySelectorAll('.card__portfolio');
         $cards.forEach((card) => {
           const $container = card.querySelector('.descripcion__container');
