@@ -1,8 +1,7 @@
-import '../registerForm/registerForm.css';
-import { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '@services/services';
-import { useCallback } from 'react';
+import '../registerForm/registerForm.css';
 
 const RegisterForm = () => {
   const {
@@ -13,18 +12,16 @@ const RegisterForm = () => {
   } = useForm();
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Falta el useCallback https://es.react.dev/reference/react/useCallback#reference
-  const onSubmit = async (data) => {
+  const onSubmit = useCallback(async (data) => {
     try {
       const { confirmarPassword, ...submitData } = data;
       const result = await register(submitData);
       console.log('Registro exitoso', result);
-
     } catch (error) {
-       console.error('Falló el registro:', error);
-      setErrorMessage(`El registro falló.  ${error.message}`);
+      console.error('Falló el registro:', error);
+      setErrorMessage(`El registro falló. ${error.message}`);
     }
-  };
+  }, []);
 
   return (
     <form
@@ -137,7 +134,7 @@ const RegisterForm = () => {
         </span>
       )}
 
-      <label htmlFor="name" className="label">
+      <label htmlFor="user_name" className="label">
         User Name
       </label>
       <input
@@ -157,27 +154,29 @@ const RegisterForm = () => {
           {errors.user_name.message}
         </span>
       )}
-      <label htmlFor="name" className="label">
+
+      <label htmlFor="profile_picture" className="label">
         Profile Picture
       </label>
       <input
         type="file"
-        id="user_name"
-        placeholder="Crea un nombre de usuario"
+        id="profile_picture"
         className="input input-password"
-        {...formRegister('user_name', {
+        {...formRegister('profile_picture', {
           required: {
             value: true,
-            message: 'El Nombre de usuario es requerido',
+            message: 'La foto de perfil es requerida',
           },
         })}
       />
-      {errors.user_name && (
+      {errors.profile_picture && (
         <span className="helper__text helper__text--warning">
-          {errors.user_name.message}
+          {errors.profile_picture.message}
         </span>
       )}
-	  {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+
       <input
         type="submit"
         value="Confirm"

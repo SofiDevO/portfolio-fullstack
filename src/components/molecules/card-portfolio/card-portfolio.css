@@ -145,3 +145,14 @@
 .iconify{
 	width: 32px;
 }
+
+.card__edit{
+	padding-right: 1.5rem;
+    position: absolute;
+    left: 85%;
+	top: 10px;
+    z-index: 10;
+	background-color: rgba(68, 12, 198, 0.975);
+	padding: .3rem;
+	border-radius: 8px;
+}

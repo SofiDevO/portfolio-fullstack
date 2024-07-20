@@ -17,14 +17,17 @@ const RegisterForm = () => {
       const { confirmarPassword, ...submitData } = data;
       const result = await register(submitData);
       console.log('Registro exitoso', result);
-      if (result) navigation.navigate('/login');
+      if (result) {
+        window.location.href = '/login';
+      }
     } catch (error) {
-       console.error('Falló el registro:', error);
-      setErrorMessage(`El registro falló.  ${error.message}`);
+      console.error('Falló el registro:', error);
+      setErrorMessage(`El registro falló. ${error.message}`);
     }
   };
 
   return (
+    <>
     <form
       onSubmit={handleSubmit(onSubmit)}
       action="/"
@@ -135,9 +138,7 @@ const RegisterForm = () => {
         </span>
       )}
 
-
-
-      <label htmlFor="name" className="label">
+      <label htmlFor="user_name" className="label">
         User Name
       </label>
       <input
@@ -157,7 +158,7 @@ const RegisterForm = () => {
           {errors.user_name.message}
         </span>
       )}
-	  {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <input
         type="submit"
         value="Confirm"
@@ -165,6 +166,7 @@ const RegisterForm = () => {
         disabled={!isDirty}
       />
     </form>
+    </>
   );
 };
 

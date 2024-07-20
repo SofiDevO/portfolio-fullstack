@@ -7,17 +7,26 @@ export class ServiceManager {
 	#formDataHeaders = { 'Content-Type': 'multipart/form-data' };
 
 	// Constructor que inicializa la URL base y las opciones de configuración para fetch
-	constructor(baseURL, mode, credentials) {
+	constructor(baseURL, mode, credentials, tokenName, token) {
 		// Opciones base para las solicitudes fetch
 		this.baseFetchOptions = { mode, credentials };
 		this.baseURL = baseURL; // URL base para todas las solicitudes
+		this.#formDataHeaders[tokenName] = token;
+		this.#jsonHeaders[tokenName] = token;
+		this.tokenName = tokenName;
+		this.token = token;
 	}
 
 	// Método GET para realizar una solicitud GET
 	async GET(path) {
-		const fetchOptions = { ...this.baseFetchOptions, method: 'GET' }; // Opciones de fetch con método GET
+		const headers = {};
+		headers[this.tokenName] = this.token;
+		const fetchOptions = {
+			...this.baseFetchOptions,
+			method: 'GET',
+			headers,
+		}; // Opciones de fetch con método GET
 		const res = await fetch(this.baseURL + path, fetchOptions); // Realiza la solicitud GET
-
 		// Si la respuesta no es exitosa, lanza un error HTTP
 		if (!res.ok) throw new HTTPError(await res.json());
 		return res; // Devuelve la respuesta
@@ -74,6 +83,7 @@ export class ServiceManager {
 }
 
 // Clase para gestionar errores HTTP (debe ser definida en otro lugar)
+// NOTE: Esto no se que hace aquí xd eso existe en /httpError/httpError.js
 class HTTPError extends Error {
 	constructor(response) {
 		super(`HTTP Error: ${response.status}`);

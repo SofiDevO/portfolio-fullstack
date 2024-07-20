@@ -6,6 +6,7 @@ export const baseURL = 'https://sofi.igarrux.com';
 const headers = {
 	'Content-Type': 'application/json',
 };
+
 // registro
 const register = async (data) => {
 	const response = await fetch(`${baseURL}/auth/singup`, {
@@ -34,10 +35,29 @@ const login = async (data) => {
 	throw new HTTPError(response);
 };
 
+const getUserInfo = async ()=>{
+	const response = await  fetch(`${baseURL}/auth/user-info`,{
+		method: 'GET',
+		headers,
+		credentials: 'include',
+		mode: 'cors',
+	});
+	if (resposne.status.toString().startsWith('20')){
+		const data = await  response.json();
+		return data;
+	}
+	throw new HTTPError(response);
+}
+
+
+
 // Get User data
+const token = localStorage.getItem('auth');
 export const contentService = new ServiceManager(
 	'https://sofi.igarrux.com',
 	'cors',
-	'include'
+	'include',
+	'authorization',
+	`Bearer ${token}`
 );
-export { register, login };
+export { register, login, getUserInfo };
