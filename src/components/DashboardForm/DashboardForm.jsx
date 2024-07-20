@@ -1,27 +1,38 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '@services/services';
 import '../registerForm/registerForm.css';
+import { updateUserService } from '@src/services';
 
-const RegisterForm = () => {
+const RegisterForm = ({ name, email, username }) => {
+  const [userName, setUserName] = useState(name);
+  const [userEmail, setUserEmail] = useState(email);
+  const [userUsername, setUserUsername] = useState(username);
+
   const {
     register: formRegister,
     handleSubmit,
     formState: { errors, isDirty },
     getValues,
   } = useForm();
+
   const [errorMessage, setErrorMessage] = useState('');
 
-  const onSubmit = useCallback(async (data) => {
+  const onSubmit = async (data) => {
     try {
-      const { confirmarPassword, ...submitData } = data;
-      const result = await register(submitData);
-      console.log('Registro exitoso', result);
+      await updateUserService(data);
+      navigation.navigate('/dashboard');
     } catch (error) {
-      console.error('Falló el registro:', error);
-      setErrorMessage(`El registro falló. ${error.message}`);
+      if (error instanceof HTTPError) return setErrorMessage(error.msg);
+      setErrorMessage('No se pudo actualizar tu información');
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    setUserName(name);
+    setUserEmail(email);
+    setUserUsername(username);
+  }, [name, email, username]);
 
   return (
     <form
@@ -36,6 +47,7 @@ const RegisterForm = () => {
       <input
         type="text"
         id="name"
+        value={userName}
         placeholder="Enter your name"
         className="input input-password"
         {...formRegister('name', {
@@ -47,6 +59,7 @@ const RegisterForm = () => {
             value: /^[A-Za-záéíóúüÜñÑ\s]+$/i,
             message: 'Nombre inválido',
           },
+          onChange: (e) => setUserName(e.target.value),
         })}
       />
       {errors.name && (
@@ -61,6 +74,7 @@ const RegisterForm = () => {
       <input
         type="email"
         id="email"
+        value={userEmail}
         placeholder="Ingresa un email"
         className="input input-password"
         {...formRegister('email', {
@@ -73,6 +87,7 @@ const RegisterForm = () => {
             message:
               'Correo inválido. Asegúrate de que el correo contenga el formato correcto',
           },
+          onChange: (e) => setUserEmail(e.target.value),
         })}
       />
       {errors.email && (
@@ -91,7 +106,7 @@ const RegisterForm = () => {
         className="input input-password"
         {...formRegister('password', {
           required: {
-            value: true,
+            value: false,
             message: 'El password es requerido',
           },
           minLength: {
@@ -140,6 +155,7 @@ const RegisterForm = () => {
       <input
         type="text"
         id="user_name"
+        value={userUsername}
         placeholder="Crea un nombre de usuario"
         className="input input-password"
         {...formRegister('user_name', {
@@ -147,6 +163,7 @@ const RegisterForm = () => {
             value: true,
             message: 'El Nombre de usuario es requerido',
           },
+          onChange: (e) => setUserUsername(e.target.value),
         })}
       />
       {errors.user_name && (
@@ -164,7 +181,7 @@ const RegisterForm = () => {
         className="input input-password"
         {...formRegister('profile_picture', {
           required: {
-            value: true,
+            value: false,
             message: 'La foto de perfil es requerida',
           },
         })}

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { getPortafolioData } from '@data/portfolioData';
-import Card from '@molecules/card-portfolio/CardPortfolio';
+import Card from '@atoms/card-portfolio/CardPortfolio';
 import { getIMGAverageColor } from '@utils/average-img-color/average-img-color';
 
 const CardPortfolioDashboad = () => {

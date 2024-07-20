@@ -24,14 +24,14 @@ export default () => {
 	};
 
     const hasImg = !userInfo?.profile_img?.endsWith(".undefined");
-    const user_img = hasImg ? base + userInfo?.profile_img : "/img/jhon-doe.webp";
+    const user_img = hasImg ? base + userInfo?.profile_img : "../img/jhon-doe.webp";
 	return (
 		<div className="bg-primary10 h-auto min-h-[100dvh] w-[24rem] py-10 flex flex-col items-center gap-10">
 			<div className="px-4 flex flex-col gap-3">
 
 				<img
                         src={user_img}
-                        alt="foto de perfil de Jhon Doe"
+                        alt={`foto de perfil de ${userInfo?.name}}`}
                         className="w-[150px] h-[150px] min-w-[150px] min-h-[150px] rounded-full"
                 />
                 <h2 className='text-2xl text-center '>{userInfo?.name}</h2>
@@ -74,7 +74,7 @@ export default () => {
 				ref={dialogRef}
 				className="bg-primary10 text-white px-16 py-10 z-30"
 			>
-				<DashboardForm />
+				<DashboardForm  name={userInfo?.name} email={userInfo?.email} username={userInfo?.user_name}  />
 				<button id="close-overlay" onClick={handleClose}>OK</button>
 			</dialog>
 		</div>

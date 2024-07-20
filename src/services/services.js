@@ -35,24 +35,39 @@ const login = async (data) => {
 	throw new HTTPError(response);
 };
 
-const getUserInfo = async ()=>{
-	const response = await  fetch(`${baseURL}/auth/user-info`,{
+const getUserInfo = async () => {
+	const response = await fetch(`${baseURL}/auth/user-info`, {
 		method: 'GET',
 		headers,
 		credentials: 'include',
 		mode: 'cors',
 	});
-	if (resposne.status.toString().startsWith('20')){
-		const data = await  response.json();
+	if (response.status.toString().startsWith('20')) {
+		const data = await response.json();
 		return data;
 	}
 	throw new HTTPError(response);
 }
 
+// Update user info
+const userUpdate = async (data) => {
+	const response = await fetch(`${baseURL}/auth/user-info/ + ${userName}`, {
+		method: 'PATCH',
+		headers,
+		body: JSON.stringify(data),
+		credentials: 'include',
+		mode: 'cors',
+	});
+	if (response.status.toString().startsWith('20')) return true;
+	throw new HTTPError(response);
+};
 
 
-// Get User data
-const token = localStorage.getItem('auth');
+let token = null;
+if (typeof window !== 'undefined') {
+	token = localStorage.getItem('auth');
+}
+
 export const contentService = new ServiceManager(
 	'https://sofi.igarrux.com',
 	'cors',
@@ -60,4 +75,4 @@ export const contentService = new ServiceManager(
 	'authorization',
 	`Bearer ${token}`
 );
-export { register, login, getUserInfo };
+export { register, login, getUserInfo, userUpdate };
