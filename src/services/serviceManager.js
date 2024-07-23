@@ -28,7 +28,6 @@ export class ServiceManager {
 		}; // Opciones de fetch con método GET
 		const res = await fetch(this.baseURL + path, fetchOptions); // Realiza la solicitud GET
 		// Si la respuesta no es exitosa, lanza un error HTTP
-		if (!res.ok) throw new HTTPError(await res.json());
 		return res; // Devuelve la respuesta
 	}
 
@@ -56,7 +55,6 @@ export class ServiceManager {
 		const fetchOptions = {
 			...this.baseFetchOptions,
 			method,
-			headers: this.#formDataHeaders,
 			body,
 		};
 		const res = await fetch(this.baseURL + path, fetchOptions); // Realiza la solicitud FormData

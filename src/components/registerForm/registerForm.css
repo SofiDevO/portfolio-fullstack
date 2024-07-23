@@ -48,3 +48,25 @@
 .helper__text--alert{
     color:gold;
 }
+.verification__container{
+    display: flex;
+    width: 100%;
+    .input-verification{
+        flex: 1;
+        padding: 1rem 1.5rem;
+        max-width: 24rem;
+    }
+    .button__verification{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: .3rem .4rem;
+        background: var(--primary);
+        border-radius: 0 7px 7px 0;
+        font-size: var(--text-x-large);
+        transition: 0.35s opacity;
+        max-width: 85px;
+        color: var(--primary-90);
+        font-size: 1.6rem;
+    }
+}

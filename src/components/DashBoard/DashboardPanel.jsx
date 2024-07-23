@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import DashboardForm from '../DashboardForm/DashboardForm';
 import { getUserInfo } from '@src/services';
-const base = "https://sofi.igarrux.com"
+const base = 'https://sofi.igarrux.com';
 
 export default () => {
 	const [userInfo, setUserInfo] = useState();
@@ -10,11 +10,10 @@ export default () => {
 		getUserInfo()
 			.then((res) => res.json())
 			.then(setUserInfo)
-            .catch(console.log);
-	},[]);
+			.catch(console.log);
+	}, []);
 
-
-// reinicia el server de astro
+	// reinicia el server de astro
 	const handleClose = () => {
 		dialogRef.current?.close();
 	};
@@ -23,22 +22,23 @@ export default () => {
 		dialogRef.current?.showModal();
 	};
 
-    const hasImg = !userInfo?.profile_img?.endsWith(".undefined");
-    const user_img = hasImg ? base + userInfo?.profile_img : "../img/jhon-doe.webp";
+	const hasImg = !userInfo?.profile_img?.endsWith('.undefined');
+	const user_img = hasImg
+		? base + userInfo?.profile_img
+		: 'https://picsum.photo/300/300';
 	return (
 		<div className="bg-primary10 h-auto min-h-[100dvh] w-[24rem] py-10 flex flex-col items-center gap-10">
 			<div className="px-4 flex flex-col gap-3">
-
 				<img
-                        src={user_img}
-                        alt={`foto de perfil de ${userInfo?.name}}`}
-                        className="w-[150px] h-[150px] min-w-[150px] min-h-[150px] rounded-full"
-                />
-                <h2 className='text-2xl text-center '>{userInfo?.name}</h2>
+					src={user_img}
+					alt={`foto de perfil de ${userInfo?.name}}`}
+					className="w-[150px] h-[150px] min-w-[150px] min-h-[150px] rounded-full"
+				/>
+				<h2 className="text-2xl text-center ">{userInfo?.name}</h2>
 
 				<button
 					id="open-verlay"
-                    onClick={handleOpen}
+					onClick={handleOpen}
 					className="rounded-full text-[1.9rem] text-center px-3 py-3 bg-primary60 cursor-pointer hover:opacity-[0.75]"
 				>
 					Actualizar perfil
@@ -74,8 +74,15 @@ export default () => {
 				ref={dialogRef}
 				className="bg-primary10 text-white px-16 py-10 z-30"
 			>
-				<DashboardForm  name={userInfo?.name} email={userInfo?.email} username={userInfo?.user_name}  />
-				<button id="close-overlay" onClick={handleClose}>OK</button>
+				<DashboardForm
+					name={userInfo?.name}
+					email={userInfo?.email}
+					username={userInfo?.user_name}
+					profile_img={user_img}
+				/>
+				<button id="close-overlay" onClick={handleClose}>
+					OK
+				</button>
 			</dialog>
 		</div>
 	);

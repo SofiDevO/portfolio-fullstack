@@ -47,9 +47,12 @@ const getUserInfo = async () => {
 		return data;
 	}
 	throw new HTTPError(response);
-}
+};
 
+import { updateUserService } from './index.js';
+//Esto no podrá actualizar la imagen, pues el binario no es serializable a JSON
 // Update user info
+
 const userUpdate = async (data) => {
 	const response = await fetch(`${baseURL}/auth/user-info/ + ${userName}`, {
 		method: 'PATCH',
@@ -61,7 +64,6 @@ const userUpdate = async (data) => {
 	if (response.status.toString().startsWith('20')) return true;
 	throw new HTTPError(response);
 };
-
 
 let token = null;
 if (typeof window !== 'undefined') {
