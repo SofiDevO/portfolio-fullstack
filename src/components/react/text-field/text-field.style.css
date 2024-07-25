@@ -1,0 +1,108 @@
+.text-field {
+	display: flex;
+	flex-direction: column;
+}
+
+.text-field label {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 57px;
+	width: 100%;
+	background: var(--primary-95);
+	padding: 22px 16px 16px 16px;
+	flex-wrap: wrap;
+	transition: 0.35s padding;
+	gap: 0 16px;
+	user-select: none;
+	border-radius: 8px;
+}
+.text-field:focus-within label,
+.text-field:active label {
+	box-shadow: 0 0 0 1.2px var(--primary);
+}
+
+.text-field label[is-valid='false'] {
+	box-shadow: 0 0 0 1.2px var(--text-field-error);
+}
+
+.text-field label[is-valid='false'] span {
+	color: var(--text-field-error);
+}
+.text-field label span {
+	width: max-content;
+	height: 22px;
+	font-size: var(--text-small);
+	max-width: 195px;
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+	color: var(--primary-20);
+	position: absolute;
+	top: 0;
+	transition-duration: 0.35s;
+	transition-property: top, transform, font-size, font-weight;
+}
+.text-field label input {
+	outline: none;
+	height: 25px;
+	min-width: 80px;
+	flex: 1;
+	font-size: var(--text-general);
+	color: var(--primary-10);
+	background: none;
+	letter-spacing: 0px;
+	transition: 0.35s letter-spacing;
+	pointer-events: all;
+}
+.text-field label input[type='password'] {
+	letter-spacing: -1px;
+}
+
+.text-field
+	label:has(input:invalid):not(:has(input:focus-within)):not(
+		:has(input:active)
+	) {
+	padding: 16px;
+	span {
+		height: 25px;
+		top: 50%;
+		transform: translateY(-50%);
+		font-weight: 500;
+		font-size: var(--text-general);
+	}
+	input::placeholder {
+		opacity: 0;
+	}
+	/* --  */
+}
+
+.text-field label input::placeholder {
+	color: var(--primary-0);
+	opacity: 0.5;
+}
+.text-field label input::-ms-reveal {
+	display: none;
+}
+.text-field label div svg {
+	color: var(--primary-10);
+}
+
+.text-field label div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 25px;
+	max-height: 25px;
+}
+
+.text-field .support-text {
+	width: 100%;
+	padding-left: 16px;
+	height: 16px;
+	font-size: var(--text-small);
+	color: var(--primary);
+}
+.text-field .support-text[is-valid='false'] {
+	color: var(--text-field-error);
+}

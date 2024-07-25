@@ -1,0 +1,10 @@
+svg[eye-icon] .line {
+	transition: 0.35s height;
+}
+svg[eye-icon]{
+    cursor: pointer;
+}
+svg[eye-icon][is-open='true'] .line {
+	height: 0;
+	background: red !important;
+}
