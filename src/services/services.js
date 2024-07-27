@@ -50,8 +50,7 @@ const getUserInfo = async () => {
 };
 
 import { updateUserService } from './index.js';
-//Esto no podrá actualizar la imagen, pues el binario no es serializable a JSON
-// Update user info
+
 
 const userUpdate = async (data) => {
 	const response = await fetch(`${baseURL}/auth/user-info/ + ${userName}`, {
