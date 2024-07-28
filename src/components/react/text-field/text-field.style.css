@@ -103,7 +103,9 @@
 	height: 25px;
 	max-height: 25px;
 }
-
+nordpass-icon{
+	margin-right: -25px;
+}
 /* Supprt text  */
 .text-field .support-text {
 	width: 100%;
