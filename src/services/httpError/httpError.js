@@ -1,13 +1,9 @@
-import { ERROR_MESSAGES } from './messajes';
-export class HTTPError {
+export class HTTPError extends Error{
 	constructor(response) {
+		super(`HTTP Error: ${response.status}`)
 		this.status = response.status;
-		if (response.status == 401) {
-			return (this.msg = ERROR_MESSAGES.invalidPassword);
-		}
 		if (response.status == 400) {
 			this.causes = response.json();
 		}
-		this.msg = response;
 	}
 }
