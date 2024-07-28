@@ -25,8 +25,7 @@ const LoginForm = () => {
 			if (error?.response?.status == 401) {
 				return setErrorMessage(UI_TEXT.UNAUTHORIZED);
 			}
-			if (error instanceof HTTPError) return setErrorMessage(error.msg);
-			setErrorMessage('No se pudo iniciar sesion. Intenta de nuevo');
+			setErrorMessage(UI_TEXT.INTERNAL_ERROR);
 		}
 	};
 

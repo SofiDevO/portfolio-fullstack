@@ -20,4 +20,5 @@ export const UI_TEXT = {
 
 	// Server Errors
 	UNAUTHORIZED: 'Correo o contraseña incorrecta',
+	INTERNAL_ERROR: 'No se pudo iniciar, intenta de nuevo',
 };
