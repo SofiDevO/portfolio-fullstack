@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { TextField } from '../text-field/text-field';
 import { UI_TEXT } from './ui/text';
-import { EMAIL_OPTIONS, PASSWORD_OPTIONS } from './utils/use-form-options';
+import { EMAIL_OPTIONS, PASSWORD_OPTIONS } from './utils/register-options';
 import { loginService } from '../../../services';
 import { HTTPError } from '../../../services/httpError/httpError';
 
