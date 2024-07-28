@@ -14,7 +14,7 @@
 	padding: 22px 16px 16px 16px;
 	flex-wrap: wrap;
 	transition-duration: 0.35s;
-	transition-property:  padding, box-shadow;
+	transition-property: padding, box-shadow;
 	gap: 0 16px;
 	user-select: none;
 	border-radius: 8px;
@@ -84,6 +84,9 @@
 		font-weight: 500;
 		font-size: var(--text-field-size);
 	}
+	:nth-child(2) {
+		opacity: 0;
+	}
 }
 .text-field
 	label:has(input:invalid):not(:has(input:focus-within)):not(
@@ -96,15 +99,19 @@
 .text-field label div svg {
 	color: var(--text-field-color);
 }
-
+.text-field label :nth-child(2) {
+	opacity: 1;
+}
 .text-field label div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 25px;
 	max-height: 25px;
+	font-size: 25px;
+	color: var(--text-field-primary-color);
 }
-nordpass-icon{
+nordpass-icon {
 	margin-right: -19px;
 }
 /* Supprt text  */
@@ -115,9 +122,9 @@ nordpass-icon{
 	font-size: var(--text-field-supporting-text-size);
 	color: var(--text-field-primary-color);
 	font-weight: normal;
-	transition: .35s color;
+	transition: 0.35s color;
 }
-.text-field .support-text:empty{
+.text-field .support-text:empty {
 	color: #0000;
 }
 .text-field .support-text[is-valid='false'] {
