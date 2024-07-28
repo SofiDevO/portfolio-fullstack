@@ -1,0 +1,63 @@
+.button {
+	color: red;
+	padding: 8px 22px;
+	font-size: var(--text-general);
+	background: var(--primary);
+	max-width: max-content;
+	border-radius: 36px;
+	color: var(--primary-95);
+	cursor: pointer;
+	transition-duration: 0.35s;
+	transition-property: opacity;
+}
+
+.button:hover {
+	opacity: 0.74;
+}
+.button:active {
+	opacity: 0.5;
+}
+
+.button.outline,
+.button.text,
+.button.text:hover,
+.button.outline:hover {
+	border: solid 1px var(--primary);
+	background: transparent;
+	color: var(--primary);
+	outline: none;
+	opacity: 1;
+	font-weight: 500;
+	transition-property: opacity, background;
+}
+.button.button.outline {
+	border: none;
+}
+.button.outline:hover,
+.button.text:hover {
+	background: var(--primary-90);
+}
+
+.button.outline:active,
+.button.text:active {
+	opacity: 0.75;
+}
+
+.button:disabled,
+.button.outline:disabled,
+.button.text:disabled {
+	cursor: not-allowed;
+	filter: contrast(0.5);
+	background: #000;
+	opacity: 1;
+}
+
+.button.text:disabled,
+.button.outline:disabled {
+	background: none;
+	color: #000;
+}
+
+.button.outline:disabled {
+	border: #000;
+}
