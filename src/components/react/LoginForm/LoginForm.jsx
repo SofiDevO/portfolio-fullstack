@@ -41,6 +41,7 @@ const LoginForm = () => {
 					label={UI_TEXT.EMAIL_LABEL}
 					isValid={!errors?.email}
 					supportText={errors?.email?.message}
+					supportIcon={<iconify-icon icon="mdi:email" />}
 					{...register('email', EMAIL_OPTIONS)}
 				/>
 				<TextField
@@ -52,6 +53,7 @@ const LoginForm = () => {
 					label={UI_TEXT.PASSWORD_LABEL}
 					isValid={!errors?.password}
 					supportText={errors?.password?.message}
+					supportIcon={<iconify-icon icon="mdi:password" />}
 					{...register('password', PASSWORD_OPTIONS)}
 				/>
 				{errorMessage && (
