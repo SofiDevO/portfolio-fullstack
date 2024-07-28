@@ -1,15 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import RegisterForm from "../components/react/registerForm/RegisterForm"
-import LinkFormulario from "../components/atoms/LinkFormulario.astro";
-
+import Layout from '../layouts/Layout.astro';
+import RegisterForm from '../components/react/registerForm/RegisterForm';
 ---
 
 <Layout title="Registro">
-<section class="flex flex-col w-full min-h-[100dvh] justify-center items-center  text-white">
-    <h1 class="color__gradiente font-bold text-[5rem] mb-11">Registro</h1>
-    <RegisterForm client:load/>
-    <LinkFormulario link="/login" texto="¿Ya tienes una cuenta? Inicia Sesión"/>
-</section>
-
+	<section
+		class="flex flex-col w-full min-h-[100dvh] justify-center items-center text-white"
+	>
+		<RegisterForm client:load />
+	</section>
 </Layout>
