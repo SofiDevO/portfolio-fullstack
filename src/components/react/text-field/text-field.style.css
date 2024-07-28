@@ -97,7 +97,7 @@
 }
 /* support icons  */
 .text-field label div svg {
-	color: var(--text-field-color);
+	color: var(--text-field-primary-color);
 }
 .text-field label :nth-child(2) {
 	opacity: 1;
