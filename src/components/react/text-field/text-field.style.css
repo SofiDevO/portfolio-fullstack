@@ -13,7 +13,8 @@
 	background: var(--text-field-background);
 	padding: 22px 16px 16px 16px;
 	flex-wrap: wrap;
-	transition: 0.35s padding;
+	transition-duration: 0.35s;
+	transition-property:  padding, box-shadow;
 	gap: 0 16px;
 	user-select: none;
 	border-radius: 8px;
@@ -43,7 +44,7 @@
 	position: absolute;
 	top: 0;
 	transition-duration: 0.35s;
-	transition-property: top, transform, font-size, font-weight;
+	transition-property: top, transform, font-size, font-weight, color;
 }
 
 /* Input  */
@@ -113,6 +114,11 @@ nordpass-icon{
 	height: 16px;
 	font-size: var(--text-field-supporting-text-size);
 	color: var(--text-field-primary-color);
+	font-weight: normal;
+	transition: .35s color;
+}
+.text-field .support-text:empty{
+	color: #0000;
 }
 .text-field .support-text[is-valid='false'] {
 	color: var(--text-field-error);
