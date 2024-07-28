@@ -61,7 +61,7 @@ const LoginForm = () => {
 					<input
 						type="submit"
 						value={UI_TEXT.SUBMIT_BUTTON_TEXT}
-						className="button text"
+						className="button"
 					/>
 					<a href="/registro" className="button outline">
 						{UI_TEXT.SIGNUP_BUTTON_TEXT}
