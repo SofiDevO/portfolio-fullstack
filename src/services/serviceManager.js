@@ -1,3 +1,4 @@
+import { HTTPError } from './httpError/httpError';
 // Clase para gestionar servicios de red
 export class ServiceManager {
 	// Encabezados para solicitudes JSON privadas
@@ -77,15 +78,5 @@ export class ServiceManager {
 	// Método para realizar una solicitud POST con JSON
 	async POSTJson(dataJSON, path) {
 		return await this.Json(dataJSON, path, 'POST');
-	}
-}
-
-// Clase para gestionar errores HTTP (debe ser definida en otro lugar)
-// NOTE: Esto no se que hace aquí xd eso existe en /httpError/httpError.js
-class HTTPError extends Error {
-	constructor(response) {
-		super(`HTTP Error: ${response.status}`);
-		this.name = 'HTTPError';
-		this.response = response;
 	}
 }
