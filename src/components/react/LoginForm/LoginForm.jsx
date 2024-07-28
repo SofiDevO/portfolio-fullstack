@@ -63,7 +63,7 @@ const LoginForm = () => {
 						value={UI_TEXT.SUBMIT_BUTTON_TEXT}
 						className="button"
 					/>
-					<a href="/registro" className="button outline">
+					<a href="/signup" className="button outline">
 						{UI_TEXT.SIGNUP_BUTTON_TEXT}
 					</a>
 				</div>
