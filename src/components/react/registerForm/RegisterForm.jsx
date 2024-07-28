@@ -1,174 +1,113 @@
 import './registerForm.css';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { register } from '../../../services/services';
 import { singupService } from '@src/services';
+import { getConfirmPasswordOptions } from './utils/register-options/confirm-password';
+import { TextField } from '../text-field/text-field';
+import { UI_TEXT } from './ui/text';
+import {
+	EMAIL_OPTIONS,
+	NAME_OPTIONS,
+	PASSWORD_OPTIONS,
+	USER_NAME_OPTIONS,
+} from './utils/register-options';
+import { httpErrorHandler } from '@src/utils/handlers/http-error.handler';
 const RegisterForm = () => {
+	const {
+		register,
+		handleSubmit,
+		setError,
+		formState: { errors },
+		getValues,
+	} = useForm({ mode: 'all' });
 
-  const {
-    register: formRegister,
-    handleSubmit,
-    formState: { errors, isDirty },
-    getValues,
-  } = useForm();
-  const [errorMessage, setErrorMessage] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
+	const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const onSubmit = async (data) => {
-    try {
-      const { confirmarPassword, ...submitData } = data;
-      const result = await register(submitData);
-      console.log('Registro exitoso', result);
-      if (result) {
-        window.location.href = '/login';
-      }
-    } catch (error) {
-      console.error('Falló el registro:', error);
-      setErrorMessage(`El registro falló. ${error.message}`);
-    }
-  };
+	const onSubmit = async (data) => {
+		setErrorMessage();
+		try {
+			const { confirmPassword, ...submitData } = data;
+			await singupService(submitData);
+			window.location.href = '/login';
+		} catch (error) {
+			if (await httpErrorHandler(error.response, setError)) return;
+			setErrorMessage(UI_TEXT.INTERNAL_SERVER_ERROR);
+		}
+	};
 
-  return (
-    <>
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      action="/"
-      className="form-register"
-      noValidate
-    >
-      <label htmlFor="name" className="label">
-        Name
-      </label>
-      <input
-        type="text"
-        id="name"
-        placeholder="Enter your name"
-        className="input input-password"
-        {...formRegister('name', {
-          required: {
-            value: true,
-            message: 'El nombre es requerido',
-          },
-          pattern: {
-            value: /^[A-Za-záéíóúüÜñÑ\s]+$/i,
-            message: 'Nombre inválido',
-          },
-        })}
-      />
-      {errors.name && (
-        <span className="helper__text helper__text--warning">
-          {errors.name.message}
-        </span>
-      )}
+	return (
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			action="/"
+			className="form-register"
+			noValidate
+		>
+			<h2>Registrarme</h2>
+			<TextField
+				label={UI_TEXT.NAME_LABEL}
+				placeholder={UI_TEXT.NAME_PLACEHOLDER}
+				isValid={!errors?.name}
+				supportText={errors?.name?.message}
+				supportIcon={<iconify-icon icon="mdi:account-edit" />}
+				{...register('name', NAME_OPTIONS)}
+			/>
+			<TextField
+				label={UI_TEXT.USER_NAME_LABEL}
+				placeholder={UI_TEXT.USER_NAME_PLACEHOLDER}
+				isValid={!errors?.user_name}
+				supportIcon={<iconify-icon icon="mdi:user" />}
+				supportText={errors?.user_name?.message}
+				{...register('user_name', USER_NAME_OPTIONS)}
+			/>
+			<TextField
+				label={UI_TEXT.EMAIL_LABEL}
+				placeholder={UI_TEXT.EMAIL_PLACEHOLDER}
+				isValid={!errors?.email}
+				supportText={errors?.email?.message}
+				supportIcon={<iconify-icon icon="mdi:email" />}
+				{...register('email', EMAIL_OPTIONS)}
+			/>
+			<TextField
+				type="password"
+				canShowPassword
+				setIsShowPassword={setIsShowPassword}
+				isShowPassword={isShowPassword}
+				label={UI_TEXT.PASSWORD_LABEL}
+				placeholder={UI_TEXT.PASSWORD_PLACEHOLDER}
+				isValid={!errors?.password}
+				supportText={errors?.password?.message}
+				supportIcon={<iconify-icon icon="mdi:password" />}
+				{...register('password', PASSWORD_OPTIONS)}
+			/>
+			<TextField
+				type="password"
+				label={UI_TEXT.CONFIRM_PASSWORD_LABEL}
+				canShowPassword
+				setIsShowPassword={setIsShowPassword}
+				isShowPassword={isShowPassword}
+				supportIcon={<iconify-icon icon="mdi:password-alert" />}
+				isValid={!errors?.confirmPassword}
+				supportText={errors?.confirmPassword?.message}
+				{...register(
+					'confirmPassword',
+					getConfirmPasswordOptions(getValues('password'))
+				)}
+			/>
 
-      <label htmlFor="email" className="label">
-        E-MAIL
-      </label>
-      <input
-        type="email"
-        id="email"
-        placeholder="Ingresa un email"
-        className="input input-password"
-        {...formRegister('email', {
-          required: {
-            value: true,
-            message: 'El correo es requerido',
-          },
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|net|mx)$/i,
-            message:
-              'Correo inválido. Asegúrate de que el correo contenga el formato correcto',
-          },
-        })}
-      />
-      {errors.email && (
-        <span className="helper__text helper__text--warning">
-          {errors.email.message}
-        </span>
-      )}
-
-      <label htmlFor="password" className="label">
-        Password
-      </label>
-      <input
-        type="password"
-        id="password"
-        placeholder="Escribe una contraseña"
-        className="input input-password"
-        {...formRegister('password', {
-          required: {
-            value: true,
-            message: 'El password es requerido',
-          },
-          minLength: {
-            value: 8,
-            message: 'Mínimo de 8 caracteres',
-          },
-          maxLength: {
-            value: 26,
-            message: 'Máximo de 26 caracteres',
-          },
-          pattern: {
-            value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/i,
-            message:
-              'El password debe tener al menos 8 caracteres, 1 mayúscula, 1 signo',
-          },
-        })}
-      />
-      {errors.password && (
-        <span className="helper__text helper__text--warning">
-          {errors.password.message}
-        </span>
-      )}
-
-      <label htmlFor="confirmarPassword" className="label">
-        Confirmar Password
-      </label>
-      <input
-        type="password"
-        id="confirmarPassword"
-        placeholder="*******"
-        className="input"
-        {...formRegister('confirmarPassword', {
-          validate: (value) =>
-            value === getValues('password') || 'Las contraseñas no coinciden.',
-        })}
-      />
-      {errors.confirmarPassword && (
-        <span className="helper__text helper__text--alert">
-          {errors.confirmarPassword.message}
-        </span>
-      )}
-
-      <label htmlFor="user_name" className="label">
-        User Name
-      </label>
-      <input
-        type="text"
-        id="user_name"
-        placeholder="Crea un nombre de usuario"
-        className="input input-password"
-        {...formRegister('user_name', {
-          required: {
-            value: true,
-            message: 'El Nombre de usuario es requerido',
-          },
-        })}
-      />
-      {errors.user_name && (
-        <span className="helper__text helper__text--warning">
-          {errors.user_name.message}
-        </span>
-      )}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <input
-        type="submit"
-        value="Confirm"
-        className="login-button"
-        disabled={!isDirty}
-      />
-    </form>
-    </>
-  );
+			{errorMessage && <p className="error-message">{errorMessage}</p>}
+			<div className="buttons">
+				<input
+					type="submit"
+					value={UI_TEXT.SIGNUP}
+					className="button"
+				/>
+				<a href="/login" className="button outline text">
+					{UI_TEXT.LOGIN}
+				</a>
+			</div>
+		</form>
+	);
 };
 
 export default RegisterForm;

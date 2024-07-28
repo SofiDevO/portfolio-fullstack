@@ -28,8 +28,8 @@ export const UI_TEXT = {
 
 	// Buttons
 	SIGNUP: 'Registrarme',
+	LOGIN: 'Tengo cuenta',
 
 	// Internal server error
-	INTERNAL_SERVER_ERROR:
-		'Ha ocurrido un error. Por favor intenta de nuevo',
+	INTERNAL_SERVER_ERROR: 'Ha ocurrido un error. Por favor intenta de nuevo',
 };
