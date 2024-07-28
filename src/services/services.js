@@ -73,7 +73,7 @@ if (typeof window !== 'undefined') {
 export const contentService = new ServiceManager(
 	'https://sofi.igarrux.com',
 	'cors',
-	'include',
+	'omit',
 	'authorization',
 	`Bearer ${token}`
 );
