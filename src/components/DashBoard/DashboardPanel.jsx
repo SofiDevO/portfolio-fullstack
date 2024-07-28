@@ -22,10 +22,10 @@ export default () => {
 		dialogRef.current?.showModal();
 	};
 
-	const hasImg = !userInfo?.profile_img?.endsWith('.undefined');
+	const hasImg = !userInfo?.profile_img?.endsWith('.none');
 	const user_img = hasImg
 		? base + userInfo?.profile_img
-		: 'https://picsum.photo/300/300';
+		: 'https://picsum.photos/300/300';
 	return (
 		<div className="bg-primary10 h-auto min-h-[100dvh] w-[24rem] py-10 flex flex-col items-center gap-10">
 			<div className="px-4 flex flex-col gap-3">
