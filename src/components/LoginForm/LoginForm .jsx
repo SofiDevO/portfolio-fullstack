@@ -1,24 +1,30 @@
 import './LoginForm .css';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { login } from '../../services/services';
+import { TextField } from '../react/text-field/text-field';
+import { UI_TEXT } from './ui/text';
+import { EMAIL_OPTIONS, PASSWORD_OPTIONS } from './utils/use-form-options';
 import { loginService } from '../../services';
 import { HTTPError } from '../../services/httpError/httpError';
+
 const LoginForm = () => {
 	const {
-		register: formRegister,
+		register,
 		handleSubmit,
-		formState: { errors, isDirty },
-		getValues,
-	} = useForm();
+		formState: { errors },
+	} = useForm({ mode: 'all' });
 	const [errorMessage, setErrorMessage] = useState('');
+	const [isShowPassword, setIsShowPassword] = useState(false);
 
 	const onSubmit = async (data) => {
 		try {
 			await loginService(data);
-			localStorage.setItem("loginStatus", "ok")
+			localStorage.setItem('loginStatus', 'ok');
 			navigation.navigate('/dashboard');
 		} catch (error) {
+			if (error?.response?.status == 401) {
+				return setErrorMessage(UI_TEXT.UNAUTHORIZED);
+			}
 			if (error instanceof HTTPError) return setErrorMessage(error.msg);
 			setErrorMessage('No se pudo iniciar sesion. Intenta de nuevo');
 		}
@@ -26,67 +32,41 @@ const LoginForm = () => {
 
 	return (
 		<>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				action=""
-				className="form-register"
-			>
-				<label htmlFor="email" className="label">
-					E-MAIL
-				</label>
-				<input
-					type="email"
+			<form onSubmit={handleSubmit(onSubmit)} className="form-register">
+				<h2>{UI_TEXT.FORM_TITLE}</h2>
+				<TextField
 					id="email"
-					placeholder="Ingresa un email"
-					className="input input-password"
-					{...formRegister('email', {
-						required: {
-							value: true,
-							message: 'El correo es requerido',
-						},
-						pattern: {
-							value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|net|mx)$/i,
-							message:
-								'Correo inválido. Asegúrate de que el correo contenga el formato correcto',
-						},
-					})}
+					type="email"
+					placeholder={UI_TEXT.EMAIL_PLACEHOLDER}
+					label={UI_TEXT.EMAIL_LABEL}
+					isValid={!errors?.email}
+					supportText={errors?.email?.message}
+					{...register('email', EMAIL_OPTIONS)}
 				/>
-				{errors.email && (
-					<span className="helper__text helper__text--warning">
-						{errors.email.message}
-					</span>
-				)}
-
-				<label htmlFor="password" className="label">
-					Password
-				</label>
-				<input
-					type="password"
+				<TextField
 					id="password"
-					placeholder="Escribe una contraseña"
-					className="input input-password"
-					{...formRegister('password', {
-						required: {
-							value: true,
-							message: 'El password es requerido',
-						},
-					})}
+					type="password"
+					canShowPassword
+					isShowPassword={isShowPassword}
+					setIsShowPassword={setIsShowPassword}
+					label={UI_TEXT.PASSWORD_LABEL}
+					isValid={!errors?.password}
+					supportText={errors?.password?.message}
+					{...register('password', PASSWORD_OPTIONS)}
 				/>
-				{errors.password && (
-					<span className="helper__text helper__text--warning">
-						{errors.password.message}
-					</span>
-				)}
 				{errorMessage && (
-					<p className="error-message">{errorMessage}</p>
+					<span className="error_text">{errorMessage}</span>
 				)}
-
-				<input
-					type="submit"
-					value="Confirm"
-					className="login-button"
-					disabled={!isDirty}
-				/>
+				<div className="buttons">
+					<input
+						type="submit"
+						value={UI_TEXT.SUBMIT_BUTTON_TEXT}
+						className="button text"
+					/>
+					<a href="/registro" className="button outline">
+						{UI_TEXT.SIGNUP_BUTTON_TEXT}
+					</a>
+				</div>
 			</form>
 		</>
 	);
