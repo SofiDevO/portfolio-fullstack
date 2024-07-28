@@ -1,7 +1,7 @@
 import './registerForm.css';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { register } from '../../services/services';
+import { register } from '../../../services/services';
 import { singupService } from '@src/services';
 const RegisterForm = () => {
 
