@@ -10,6 +10,7 @@ export const TextField = forwardRef(
 			supportIcon,
 			isShowPassword,
 			setIsShowPassword,
+			canShowPassword,
 			...props
 		},
 		ref
@@ -26,7 +27,7 @@ export const TextField = forwardRef(
 						type={isShowPassword ? 'text' : props.type}
 						required
 					/>
-					{props?.type == 'password' && (
+					{props?.type == 'password' && canShowPassword && (
 						<div>
 							<EyeIcon
 								setIsOpen={setIsShowPassword}
