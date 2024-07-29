@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '@services/services';
-import '../registerForm/registerForm.css';
+import '../react/registerForm/registerForm.css';
 import { updateUserService, sendVerificationService } from '@src/services';
 const RegisterForm = ({ name, email, username, profile_img }) => {
 	const [userName, setUserName] = useState(name);
@@ -16,7 +16,7 @@ const RegisterForm = ({ name, email, username, profile_img }) => {
 	} = useForm();
 
 	const [errorMessage, setErrorMessage] = useState('');
-	const [profileImg, setProfileImg] = useState(profile_img);
+	const [profileImg, setProfileImg] = useState('');
 	const onSubmit = async (data) => {
 		try {
 			await updateUserService(data, userUsername/**Esto faltaba  */);
@@ -46,8 +46,9 @@ const RegisterForm = ({ name, email, username, profile_img }) => {
 			noValidate
 		>
 			<label htmlFor="profile_picture" className="label">
-				<img src={profileImg} alt="" />
+				<img src={profileImg || profile_img} alt="" />
 				Profile Picture
+
 			</label>
 			<input
 				type="file"
