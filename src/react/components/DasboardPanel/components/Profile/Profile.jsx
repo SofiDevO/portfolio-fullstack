@@ -16,7 +16,9 @@ export const Profile = () => {
 	const userNameRef = useRef('');
 	const nameRef = useRef('');
 
-	useEffect(() => fetchData(), []);
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	const fetchData = async () => {
 		const userRawData = await getUserInfo();
