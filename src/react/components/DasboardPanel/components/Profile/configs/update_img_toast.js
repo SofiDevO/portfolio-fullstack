@@ -7,6 +7,7 @@ export const updateImgToastParams = {
 		render({ data: error }) {
 			if (error.status == 431) return UI_TEXT.IMG_TOO_LARGE;
 			if (error.status == 500) return UI_TEXT.SERVER_ERROR;
+			if (error.status == 415) return UI_TEXT.INVALID_IMG_FORMAT;
 			if (error.name == 'TypeError') return UI_TEXT.CONECTION_ERROR;
 		},
 	},
