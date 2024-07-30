@@ -76,7 +76,7 @@
 	--text-field-label-color: var(--primary-30);
 	--text-field-label-up-size: var(--text-small);
 	--text-field-size: var(--text-general);
-	--text-field-supporting-text-size: var(--text-small)
+	--text-field-supporting-text-size: var(--text-small);
 }
 
 * {
@@ -115,6 +115,33 @@ p {
 	max-width: 117.8rem;
 }
 
-.Toastify{
+.Toastify {
 	font-size: var(--text-general);
+}
+
+@keyframes placeholderBrightness {
+	from {
+		background-position: 0% 50%;
+	}
+	to {
+		background-position: 114% 50%;
+	}
+}
+[is-loading='true'] * {
+	visibility: hidden;
+}
+
+[is-loading='true'] {
+	background-image: linear-gradient(
+		45deg,
+		var(--primary-95),
+		#82798b,
+		var(--primary-95),
+		#82798b,
+		var(--primary-95)
+	);
+	background-size: 800% 800%;
+	background-position: 180% 50%;
+
+	animation: placeholderBrightness 3s linear infinite;
 }
