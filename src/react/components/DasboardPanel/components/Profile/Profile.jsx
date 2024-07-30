@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { UI_TEXT } from '../ui/text';
 import { updateImgToastParams } from './configs/update_img_toast';
 import { updateNameToastParams } from './configs/update_name_toast';
+import { validateImgFile } from './validations/validate-img-file';
 
 const defaultIMG = '/img/profile_default.png';
 export const Profile = () => {
@@ -40,14 +41,16 @@ export const Profile = () => {
 			.catch(() => setName(nameRef.current));
 	}, [name]);
 
-	const updateProfileImage = useCallback(async ({ target: { files } }) => {
-		if (!files[0]) return;
-		const profile_img = files[0];
+	const updateProfileImage = useCallback(async ({ target }) => {
+		const profile_img = target.files[0];
+		target.value = '';
+		if (!(await validateImgFile(profile_img))) return;
+		if (!profile_img) return;
 		await toast.promise(
 			updateUserService({ profile_img }, userNameRef.current),
 			updateImgToastParams
 		);
-		const url = URL.createObjectURL(files[0]);
+		const url = URL.createObjectURL(profile_img);
 		setProfileImg(url);
 	}, []);
 
