@@ -1,6 +1,8 @@
 ---
-import "@styles/global.css"
+import '@styles/global.css';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../public/consts.js';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 interface Props {
 	title: string;
@@ -9,7 +11,6 @@ const { title } = Astro.props;
 import Header from '../components/organisms/header/Header.astro';
 import { mainMenu } from '../data/menuData.js';
 import BaseHead from '../components/BaseHead.astro';
-
 ---
 
 <!doctype html>
@@ -19,14 +20,18 @@ import BaseHead from '../components/BaseHead.astro';
 	</head>
 	<body>
 		<slot />
+		<ToastContainer
+			theme="dark"
+			position="bottom-left"
+			autoClose={2222}
+			client:load
+		/>
 	</body>
 </html>
 
 <style>
-	body{
+	body {
 		background: white;
-		color:white;
+		color: white;
 	}
-
-
 </style>

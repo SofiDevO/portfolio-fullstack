@@ -114,3 +114,7 @@ p {
 .max__width {
 	max-width: 117.8rem;
 }
+
+.Toastify{
+	font-size: var(--text-general);
+}
