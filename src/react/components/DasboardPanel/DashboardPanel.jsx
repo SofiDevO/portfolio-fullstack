@@ -1,5 +1,5 @@
 import styles from './dashboardPanel.module.css';
-import { Profile } from './components/profile/profile';
+import { Profile } from './components/Profile/Profile';
 
 export default () => {
 	return (
