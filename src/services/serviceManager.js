@@ -5,7 +5,7 @@ export class ServiceManager {
 	#jsonHeaders = { 'Content-Type': 'application/json' };
 
 	// Encabezados para solicitudes multipart/form-data privadas
-	#formDataHeaders = { 'Content-Type': 'multipart/form-data' };
+	#formDataHeaders = {};
 
 	// Constructor que inicializa la URL base y las opciones de configuración para fetch
 	constructor(baseURL, mode, credentials, tokenName, token) {
@@ -55,6 +55,7 @@ export class ServiceManager {
 		entries.forEach(([name, value]) => body.append(name, value)); // Añade cada entrada a FormData
 		const fetchOptions = {
 			...this.baseFetchOptions,
+			headers: this.#formDataHeaders,
 			method,
 			body,
 		};
