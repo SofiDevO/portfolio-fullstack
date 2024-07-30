@@ -10,4 +10,7 @@
         margin-bottom: 3rem;
         color: black;
     }
+    h2{
+        color: var(--on-primary);
+    }
 }
