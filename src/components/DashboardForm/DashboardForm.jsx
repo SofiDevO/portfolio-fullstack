@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '@services/services';
-import '../react/registerForm/registerForm.css';
+import '../../react/components/registerForm/registerForm.css'
 import { updateUserService, sendVerificationService } from '@src/services';
 const RegisterForm = ({ name, email, username, profile_img }) => {
 	const [userName, setUserName] = useState(name);
