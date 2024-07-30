@@ -72,7 +72,10 @@ export const Profile = () => {
 					value={name}
 					onKeyDown={({ key }) => key == 'Enter' && updateName()}
 					onChange={({ target: { value } }) => setName(value)}
-					onBlur={updateName}
+					onBlur={() => {
+						setIsEditname(false);
+						setName(nameRef.current);
+					}}
 					disabled={!isEditName}
 				/>
 				<iconify-icon
