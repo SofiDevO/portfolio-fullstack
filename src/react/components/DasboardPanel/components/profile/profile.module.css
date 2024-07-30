@@ -17,8 +17,12 @@
 	border-radius: 50%;
 	overflow: hidden;
 }
-.profile_img{
-	border: solid 2px var(--primary);
+.profile_img {
+	border: solid 2px transparent;
+	transition: 0.35s border-color;
+}
+.profile_img[is-loading='false'] {
+	border-color: var(--primary);
 	background: var(--on-primary);
 }
 .profile_img span {
@@ -46,13 +50,19 @@
 	font-size: var(--text-large);
 	font-weight: bold;
 	border-bottom: solid 1px transparent;
+	border-radius: 4px;
+}
+
+.input_name[is-loading='true'] * {
+	visibility: hidden;
+	opacity: 0;
 }
 
 .input_name iconify-icon {
 	font-size: 20px;
 	cursor: pointer;
 	transition: 0.35s display;
-    display: none;
+	display: none;
 }
 .input_name iconify-icon:hover {
 	opacity: 0.75;

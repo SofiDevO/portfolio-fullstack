@@ -7,18 +7,15 @@ import { UI_TEXT } from '../ui/text';
 import { updateImgToastParams } from './configs/update_img_toast';
 import { updateNameToastParams } from './configs/update_name_toast';
 
-const placeholderIMG = '/img/profile_placeholder.png';
 const defaultIMG = '/img/profile_default.png';
 export const Profile = () => {
-	const [name, setName] = useState('...');
+	const [name, setName] = useState('');
 	const [isEditName, setIsEditname] = useState(false);
-	const [profileImg, setProfileImg] = useState(placeholderIMG);
+	const [profileImg, setProfileImg] = useState('');
 	const userNameRef = useRef('');
 	const nameRef = useRef('');
 
-	useEffect(() => {
-		fetchData();
-	}, []);
+	useEffect(() => fetchData(), []);
 
 	const fetchData = async () => {
 		const userRawData = await getUserInfo();
@@ -56,7 +53,7 @@ export const Profile = () => {
 
 	return (
 		<div className={styles.profile_container}>
-			<label className={styles.profile_img}>
+			<label className={styles.profile_img} is-loading={`${!profileImg}`}>
 				<input type="file" onChange={updateProfileImage} hidden />
 				<img
 					src={profileImg}
@@ -66,7 +63,11 @@ export const Profile = () => {
 				/>
 				<span>{UI_TEXT.UPDATE_PROFILE_IMG}</span>
 			</label>
-			<label className={styles.input_name} is-editing={`${isEditName}`}>
+			<label
+				className={styles.input_name}
+				is-loading={`${!name}`}
+				is-editing={`${isEditName}`}
+			>
 				<input
 					type="text"
 					value={name}
