@@ -1,0 +1,16 @@
+---
+import LayoutDashboard from '../../layouts/LayoutDashboard.astro';
+import DashboardPanel from '@src/react/components/DasboardPanel/DashboardPanel.jsx';
+import { StaticPaths } from './config/static-paths.js';
+export const getStaticPaths = () => {
+	return StaticPaths;
+};
+const { Content } = Astro.props;
+---
+
+<LayoutDashboard title="dashboard">
+	<section class="flex">
+		<DashboardPanel client:load />
+		<Content />
+	</section>
+</LayoutDashboard>
