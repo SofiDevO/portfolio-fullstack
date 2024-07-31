@@ -12,6 +12,7 @@ import {
 	USER_NAME_OPTIONS,
 } from './utils/register-options';
 import { httpErrorHandler } from '@src/utils/handlers/http-error.handler';
+import { PATHS } from '@src/constants/paths';
 const RegisterForm = () => {
 	const {
 		register,
@@ -29,7 +30,7 @@ const RegisterForm = () => {
 		try {
 			const { confirmPassword, ...submitData } = data;
 			await singupService(submitData);
-			window.location.href = '/login';
+			window.location.href = PATHS.LOGIN;
 		} catch (error) {
 			if (await httpErrorHandler(error.response, setError)) return;
 			setErrorMessage(UI_TEXT.INTERNAL_SERVER_ERROR);
@@ -102,7 +103,7 @@ const RegisterForm = () => {
 					value={UI_TEXT.SIGNUP}
 					className="button"
 				/>
-				<a href="/login" className="button outline text">
+				<a href={PATHS.LOGIN} className="button outline text">
 					{UI_TEXT.LOGIN}
 				</a>
 			</div>

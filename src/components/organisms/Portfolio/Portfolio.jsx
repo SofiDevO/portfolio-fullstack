@@ -4,7 +4,8 @@ import Card from '../../atoms/card-portfolio/CardPortfolio';
 import { getIMGAverageColor } from '../../../utils/average-img-color/average-img-color';
 import './portfolio.css';
 import MainTitle from '../../atoms/MainTitle';
-
+import { PATHS } from '@src/constants/paths';
+const id = PATHS.INDEX_PORTFOLIO.replace('/#', '');
 const Portafolio = () => {
 	useEffect(() => {
 		const $cards = document.querySelectorAll('.card__portfolio');
@@ -25,7 +26,7 @@ const Portafolio = () => {
 	return (
 		<>
 			<section
-				id="portafolio"
+				id={id}
 				className="flex flex-col w-full justify-center items-center h-auto min-h-[100vh]"
 			>
 				<div className="portfolio__container">
