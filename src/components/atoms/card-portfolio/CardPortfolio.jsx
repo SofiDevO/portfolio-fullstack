@@ -1,4 +1,3 @@
-import React from 'react';
 import './card-portfolio.css';
 
 const CardPortfolio = ({
@@ -9,7 +8,6 @@ const CardPortfolio = ({
 	repoURL,
 	demoURL,
 	averageBrightness,
-	keyValue,
 	edit = false,
 }) => {
 	return (

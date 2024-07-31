@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import { EyeIcon } from './icons/Eye.icon';
 import './text-field.style.css';
 export const TextField = forwardRef(

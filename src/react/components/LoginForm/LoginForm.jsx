@@ -5,7 +5,6 @@ import { TextField } from '../TextField/TextField';
 import { UI_TEXT } from './ui/text';
 import { EMAIL_OPTIONS, PASSWORD_OPTIONS } from './utils/register-options';
 import { loginService } from '../../../services';
-import { HTTPError } from '../../../services/httpError/httpError';
 import { PATHS } from '@src/constants/paths';
 
 const LoginForm = () => {
@@ -20,7 +19,6 @@ const LoginForm = () => {
 	const onSubmit = async (data) => {
 		try {
 			await loginService(data);
-			localStorage.setItem('loginStatus', 'ok');
 			navigation.navigate(PATHS.DASHBOARD);
 		} catch (error) {
 			if (error?.response?.status == 401) {
