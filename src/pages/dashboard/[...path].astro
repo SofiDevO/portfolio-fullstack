@@ -5,12 +5,12 @@ import { StaticPaths } from './config/static-paths.js';
 export const getStaticPaths = () => {
 	return StaticPaths;
 };
-const { Content } = Astro.props;
+const { Content, route } = Astro.props;
 ---
 
 <LayoutDashboard title="dashboard">
 	<section class="flex">
-		<DashboardPanel client:load />
+		<DashboardPanel route={route} client:load />
 		<Content />
 	</section>
 </LayoutDashboard>

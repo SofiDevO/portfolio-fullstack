@@ -24,7 +24,7 @@
 .item:active {
 	opacity: 0.75;
 }
-.item[isselected='true'] {
+.item[is-selected='true'] {
 	background: var(--primary);
 }
 .item iconify-icon {
