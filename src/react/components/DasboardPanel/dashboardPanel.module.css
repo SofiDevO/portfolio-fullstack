@@ -1,10 +1,10 @@
 .dashboard_panel {
 	display: flex;
-	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	width: 251px;
 	height: 100dvh;
 	background: var(--primary-10);
 	position: sticky;
-	padding: 11px;
 	top: 0;
 }

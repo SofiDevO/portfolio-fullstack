@@ -1,0 +1,32 @@
+.menu {
+	width: 100%;
+	font-size: var(--text-general);
+	padding-top: 11px;
+    border-top: 1px solid #ffffff13;
+}
+
+.item {
+	padding: 11px 22px;
+	min-width: 222px;
+	background: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 11px;
+	font-weight: 500;
+	transition-duration: 0.35s;
+	transition-property: background opacity;
+	user-select: none;
+}
+.item:hover {
+	background: var(--primary-30);
+}
+.item:active {
+	opacity: 0.75;
+}
+.item[isselected='true'] {
+	background: var(--primary);
+}
+.item iconify-icon {
+	font-size: var(--text-x-large);
+}
