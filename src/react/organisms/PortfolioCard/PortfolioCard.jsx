@@ -1,6 +1,6 @@
-import './card-portfolio.css';
+import './portfolio-card.css';
 
-const CardPortfolio = ({
+export default ({
 	title,
 	descripcion,
 	imgSrc,
@@ -74,5 +74,3 @@ const CardPortfolio = ({
 		</>
 	);
 };
-
-export default CardPortfolio;

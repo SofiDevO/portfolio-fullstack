@@ -1,6 +1,6 @@
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
 import { getPortafolioData } from '../../../data/portfolioData';
-import Card from '../../atoms/card-portfolio/CardPortfolio';
+import Card from '@src/react/organisms/PortfolioCard/PortfolioCard';
 import { getIMGAverageColor } from '../../../utils/average-img-color/average-img-color';
 import './portfolio.css';
 import MainTitle from '../../atoms/MainTitle';
