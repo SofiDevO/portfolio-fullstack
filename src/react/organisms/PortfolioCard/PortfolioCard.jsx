@@ -1,4 +1,5 @@
 import './portfolio-card.css';
+import { UI_TEXT } from './ui/text';
 
 export default ({
 	title,
@@ -41,9 +42,6 @@ export default ({
 
 						<div className="skills">
 							{skills.map((skill, index) => (
-								//Estás usando la misma key! Debe de ser unica
-								// Cada map o elementos que se hagan en bucle, cada uno debe de tener una diferente.
-								// En la mayoria de casos, puedes usar el indice
 								<div key={index}>
 									<iconify-icon
 										is-loading={isLoading}
@@ -59,14 +57,14 @@ export default ({
 						<div className="buttons">
 							<a href={repoURL} is-loading={isLoading}>
 								<span>
-									Github
+									{UI_TEXT.GITHUB_LINK}
 									<iconify-icon icon="quill:link-out" />
 								</span>
 							</a>
 
 							<a href={demoURL} is-loading={isLoading}>
 								<span>
-									Demo
+									{UI_TEXT.DEMO_LINK}
 									<iconify-icon icon="quill:link-out" />
 								</span>
 							</a>
