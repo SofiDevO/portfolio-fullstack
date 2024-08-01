@@ -1,15 +1,12 @@
 ---
-import LinkFormulario from "../components/atoms/LinkFormulario.astro";
-import Layout from "../layouts/Layout.astro";
-import LoginForm from "../components/LoginForm/LoginForm .jsx";
-
+import Layout from '../layouts/Layout.astro';
+import LoginForm from '../components/react/LoginForm/LoginForm .jsx';
 ---
+
 <Layout title="Login">
-
-    <section class="flex flex-col w-full min-h-[100dvh] justify-center items-center  text-white">
-    <h1 class="color__gradiente font-bold text-[5rem] mb-11">Login</h1>
-        <LoginForm client:only/>
-    <LinkFormulario link="/registro" texto="¿No tienes una cuenxta? Créala Sesión"/>
-</section>
-
+	<section
+		class="flex flex-col w-full min-h-[100dvh] justify-center items-center text-white"
+	>
+		<LoginForm client:load />
+	</section>
 </Layout>

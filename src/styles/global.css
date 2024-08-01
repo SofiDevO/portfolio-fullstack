@@ -1,3 +1,4 @@
+@import url(./buttons.css);
 :root {
 	/* color  */
 	--primary-0: #190230;
@@ -28,7 +29,7 @@
 	--secondary-100: #ffffff;
 
 	/* colores de las propiedades */
-	--surface: #4F4360;
+	--surface: #4f4360;
 	--surface-variant: #e0d8e7;
 	--surface-dim: #998da9;
 	--surface-bridge: #d6cdee;
@@ -54,14 +55,28 @@
 	--font-montserrat: 'Montserrat', sans-serif;
 	--max-width: 108rem;
 	--site-bg: var(--primary-0);
-	--hero-bg: linear-gradient(-54deg,
-			var(--primary-0) -23%,
-			var(--primary-20),
-			var(--primary-0) 51%);
+	--hero-bg: linear-gradient(
+		-54deg,
+		var(--primary-0) -23%,
+		var(--primary-20),
+		var(--primary-0) 51%
+	);
 
-	--text-gradient: radial-gradient(circle farthest-corner at center center,
-			#58f9ff 0%,
-			#df44e7 100%);
+	--text-gradient: radial-gradient(
+		circle farthest-corner at center center,
+		#58f9ff 0%,
+		#df44e7 100%
+	);
+
+	/* text field  */
+	--text-field-error: red;
+	--text-field-primary-color: var(--primary);
+	--text-field-background: var(--primary-95);
+	--text-field-color: var(--primary-10);
+	--text-field-label-color: var(--primary-30);
+	--text-field-label-up-size: var(--text-small);
+	--text-field-size: var(--text-general);
+	--text-field-supporting-text-size: var(--text-small)
 }
 
 * {

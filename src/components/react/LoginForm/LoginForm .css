@@ -1,0 +1,29 @@
+.form-register {
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: column;
+	align-items: stretch;
+	max-width: 36rem;
+	width: 100%;
+	background-color: var(--primary-80);
+	padding: 1.5rem;
+	border-radius: 16px;
+	gap: 11px;
+}
+h2 {
+	font-size: var(--text-x-large);
+	font-weight: bold;
+	color: var(--on-surface-primary);
+}
+
+.buttons {
+	display: flex;
+	gap: 11px;
+}
+
+.error_text {
+	font-size: var(--text-small);
+	color: rgb(250, 30, 59);
+    font-weight: 600;
+    padding-bottom: 11px;
+}
