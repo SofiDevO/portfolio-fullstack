@@ -4,10 +4,11 @@ export default ({
 	title,
 	descripcion,
 	imgSrc,
-	skills=[],
+	skills = ['eos-icons:three-dots-loading', 'eos-icons:three-dots-loading'],
 	repoURL,
 	demoURL,
 	averageBrightness,
+	isLoading = false,
 	edit = false,
 }) => {
 	return (
@@ -25,6 +26,7 @@ export default ({
 				<img
 					src={imgSrc}
 					alt={title}
+					is-loading={isLoading}
 					crossOrigin="anonymous"
 					height={130}
 					width={332}
@@ -35,7 +37,7 @@ export default ({
 				<div className="descripcion__container">
 					<h2 className="card__title">{title}</h2>
 					<div className="descripcion">
-						<p>{descripcion}</p>
+						<p is-loading={isLoading}>{descripcion}</p>
 
 						<div className="skills">
 							{skills.map((skill, index) => (
@@ -44,6 +46,7 @@ export default ({
 								// En la mayoria de casos, puedes usar el indice
 								<div key={index}>
 									<iconify-icon
+										is-loading={isLoading}
 										className="iconify"
 										icon={skill}
 										width="32"
@@ -54,14 +57,14 @@ export default ({
 						</div>
 
 						<div className="buttons">
-							<a href={repoURL}>
+							<a href={repoURL} is-loading={isLoading}>
 								<span>
 									Github
 									<iconify-icon icon="quill:link-out" />
 								</span>
 							</a>
 
-							<a href={demoURL}>
+							<a href={demoURL} is-loading={isLoading}>
 								<span>
 									Demo
 									<iconify-icon icon="quill:link-out" />
