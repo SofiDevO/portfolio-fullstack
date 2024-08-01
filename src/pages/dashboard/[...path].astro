@@ -2,15 +2,17 @@
 import LayoutDashboard from '../../layouts/LayoutDashboard.astro';
 import DashboardPanel from '@src/react/components/DasboardPanel/DashboardPanel.jsx';
 import { StaticPaths } from './config/static-paths.js';
+import { PATHS } from '@src/constants/paths';
+import { DashboardProjects } from '@src/react/components/BashboardProjects/DashboardProjects';
 export const getStaticPaths = () => {
 	return StaticPaths;
 };
-const { Content, route } = Astro.props;
+const { route } = Astro.props;
 ---
 
 <LayoutDashboard title="dashboard">
 	<section class="flex">
 		<DashboardPanel route={route} client:load />
-		<Content />
+		{route == PATHS.DASHBOARD_PROJECTS && <DashboardProjects client:load />}
 	</section>
 </LayoutDashboard>
