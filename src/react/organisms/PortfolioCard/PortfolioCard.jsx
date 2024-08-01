@@ -4,7 +4,7 @@ export default ({
 	title,
 	descripcion,
 	imgSrc,
-	skills,
+	skills=[],
 	repoURL,
 	demoURL,
 	averageBrightness,
