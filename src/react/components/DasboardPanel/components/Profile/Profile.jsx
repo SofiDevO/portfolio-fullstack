@@ -34,6 +34,10 @@ export const Profile = () => {
 	const updateName = useCallback(async () => {
 		setIsEditname(false);
 		if (nameRef.current == name) return;
+		if (!name) {
+			setName(nameRef.current);
+			return toast.error(UI_TEXT.NAME_REQUIRED);
+		}
 		toast
 			.promise(
 				updateUserService({ name }, userNameRef.current),
@@ -70,7 +74,7 @@ export const Profile = () => {
 			</label>
 			<label
 				className={styles.input_name}
-				is-loading={`${!name}`}
+				is-loading={`${!name && !isEditName}`}
 				is-editing={`${isEditName}`}
 			>
 				<input

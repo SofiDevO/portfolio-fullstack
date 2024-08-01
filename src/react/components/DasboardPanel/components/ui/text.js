@@ -7,5 +7,6 @@ export const UI_TEXT = {
 	CONECTION_ERROR: 'Hubo un error de conexión',
 	NAME_UPDATING: 'Actualizando nombre',
 	NAME_UPDATED: 'Nombre actualizado',
+	NAME_REQUIRED: 'El nombre no puede estar vacío',
 	INVALID_IMG_FORMAT: 'Formato de archivo de imagen no aceptado',
 };
