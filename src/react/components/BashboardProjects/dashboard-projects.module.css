@@ -1,0 +1,22 @@
+.DashboardProjects {
+	flex: 1;
+	padding: 22px;
+	background: var(--primary-95);
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}
+
+.DashboardProjects h2 {
+	font-size: var(--text-title);
+	font-weight: 600;
+	color: var(--primary-20);
+}
+
+.cards {
+	display: flex;
+	width: 100%;
+    max-width: max-content;
+    flex-wrap: wrap;
+    gap: 11px;
+}
