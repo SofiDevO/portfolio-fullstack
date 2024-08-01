@@ -43,10 +43,11 @@ export const getFileType = (file, cb) => {
 
 		const reader = new FileReader();
 		reader.onload = function ({ target: { result } }) {
-			if (result.startsWith('<svg')) cb('image/svg+xml');
+			console.log(result);
+			if (result.includes('<svg')) cb('image/svg+xml');
 			else cb('unknow');
 		};
-		reader.readAsText(file.slice(0, 5));
+		reader.readAsText(file.slice(0, 222));
 	};
 	reader.readAsArrayBuffer(file.slice(0, 12));
 };
