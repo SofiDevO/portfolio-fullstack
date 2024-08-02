@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RegisterForm from '../react/components/RegisterForm/RegisterForm';
+---
+
+<Layout title="Registro">
+	<section
+		class="flex flex-col w-full min-h-[100dvh] justify-center items-center text-white"
+	>
+		<RegisterForm client:load />
+	</section>
+</Layout>

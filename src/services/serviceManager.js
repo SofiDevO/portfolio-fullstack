@@ -1,10 +1,11 @@
+import { HTTPError } from './httpError/httpError';
 // Clase para gestionar servicios de red
 export class ServiceManager {
 	// Encabezados para solicitudes JSON privadas
 	#jsonHeaders = { 'Content-Type': 'application/json' };
 
 	// Encabezados para solicitudes multipart/form-data privadas
-	#formDataHeaders = { 'Content-Type': 'multipart/form-data' };
+	#formDataHeaders = {};
 
 	// Constructor que inicializa la URL base y las opciones de configuración para fetch
 	constructor(baseURL, mode, credentials, tokenName, token) {
@@ -28,6 +29,7 @@ export class ServiceManager {
 		}; // Opciones de fetch con método GET
 		const res = await fetch(this.baseURL + path, fetchOptions); // Realiza la solicitud GET
 		// Si la respuesta no es exitosa, lanza un error HTTP
+		if (!res.ok) throw new HTTPError(res);
 		return res; // Devuelve la respuesta
 	}
 
@@ -54,13 +56,14 @@ export class ServiceManager {
 		entries.forEach(([name, value]) => body.append(name, value)); // Añade cada entrada a FormData
 		const fetchOptions = {
 			...this.baseFetchOptions,
+			headers: this.#formDataHeaders,
 			method,
 			body,
 		};
 		const res = await fetch(this.baseURL + path, fetchOptions); // Realiza la solicitud FormData
 
 		// Si la respuesta no es exitosa, lanza un error HTTP
-		if (!res.ok) throw new HTTPError(await res.json());
+		if (!res.ok) throw new HTTPError(res);
 		return res; // Devuelve la respuesta
 	}
 
@@ -77,15 +80,5 @@ export class ServiceManager {
 	// Método para realizar una solicitud POST con JSON
 	async POSTJson(dataJSON, path) {
 		return await this.Json(dataJSON, path, 'POST');
-	}
-}
-
-// Clase para gestionar errores HTTP (debe ser definida en otro lugar)
-// NOTE: Esto no se que hace aquí xd eso existe en /httpError/httpError.js
-class HTTPError extends Error {
-	constructor(response) {
-		super(`HTTP Error: ${response.status}`);
-		this.name = 'HTTPError';
-		this.response = response;
 	}
 }

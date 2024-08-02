@@ -1,14 +1,15 @@
 ---
-
-import MainTitle from "../atoms/MainTitle";
-import SkillsOnTerminal from  "./skills-on-terminal/skillsOnTerminal.astro"
+import { PATHS } from '@src/constants/paths';
+import MainTitle from '../atoms/MainTitle';
+import SkillsOnTerminal from './skills-on-terminal/skillsOnTerminal.astro';
 import './skills.css';
+const id = PATHS.INDEX_SKILLS.replace('/#', '');
 ---
 
-<section id="skills">
+<section id={id}>
 	<SkillsOnTerminal />
 	<div class="text-content">
-	<MainTitle contenido="Skills" margin="1rem" />
+		<MainTitle contenido="Skills" margin="1rem" />
 		<p>
 			Escribe aquí tus habilidades, recuerda mencionar las más relevantes
 			y evitar sobrecargar las habilidades , este apartado es muy

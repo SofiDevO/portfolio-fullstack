@@ -1,13 +1,12 @@
 ---
+import { PATHS } from '@src/constants/paths';
 import SocialIcons from '../SocialIcons.astro';
 import MainTitle from '../atoms/MainTitle';
-
-import "./about.css"
-
-
+const id = PATHS.INDEX_ABOUT_ME.replace('/#', '');
+import './about.css';
 ---
 
-<section id="about" class="about">
+<section id={id} class="about">
 	<div class="about__container">
 		<img
 			class="about__img"
@@ -19,13 +18,12 @@ import "./about.css"
 			<MainTitle contenido="About me" margin="2rem" />
 			<p class="about__text">
 				Habla sobre tí, tu profesión, lo que te gusta, cual es tu
-				pasatiempos, que haces en tu ratos libres, que cosas te apasionan y
-				has aprendido, ¿porqué elegiste está profesión?, ¿Tienes mascota?
-				¿Te gusta ir a caminar al parque? ¿Estudiaste algo más? ¿En que eres
-				bueno?
+				pasatiempos, que haces en tu ratos libres, que cosas te
+				apasionan y has aprendido, ¿porqué elegiste está profesión?,
+				¿Tienes mascota? ¿Te gusta ir a caminar al parque? ¿Estudiaste
+				algo más? ¿En que eres bueno?
 			</p>
-			<SocialIcons width="25" height="25"/>
+			<SocialIcons width="25" height="25" />
 		</div>
 	</div>
-
 </section>

@@ -1,0 +1,10 @@
+.dashboard_panel {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 251px;
+	height: 100dvh;
+	background: var(--primary-10);
+	position: sticky;
+	top: 0;
+}

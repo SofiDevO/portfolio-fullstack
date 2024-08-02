@@ -1,0 +1,95 @@
+.profile_container,
+.profile_img span {
+	display: flex;
+	align-items: center;
+}
+.profile_container {
+	flex-direction: column;
+	gap: 22px;
+	padding: 22px 0;
+	width: 100%;
+}
+.profile_img,
+.profile_img span {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.profile_img {
+	border: solid 2px transparent;
+	transition: 0.35s border-color;
+}
+.profile_img[is-loading='false'] {
+	border-color: var(--primary);
+	background: var(--on-primary);
+}
+.profile_img span {
+	position: absolute;
+	justify-content: center;
+	top: 0;
+	font-size: var(--text-medium);
+	font-weight: bold;
+	background: #0008;
+	opacity: 0;
+	cursor: pointer;
+	transition: 0.35s opacity ease-in-out;
+}
+.profile_img:hover span {
+	opacity: 1;
+}
+
+.input_name {
+	display: flex;
+	color: var(--on-primary);
+	gap: 11px;
+	min-width: 150px;
+	max-width: 100%;
+	box-sizing: border-box;
+	font-size: var(--text-large);
+	font-weight: bold;
+	border-bottom: solid 1px transparent;
+	border-radius: 4px;
+}
+
+.input_name[is-loading='true'] * {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.input_name iconify-icon {
+	font-size: 20px;
+	cursor: pointer;
+	transition: 0.35s display;
+	display: none;
+}
+.input_name iconify-icon:hover {
+	opacity: 0.75;
+}
+.input_name input {
+	display: inline;
+	width: 0px;
+	text-align: center;
+	flex: 1;
+	margin-left: calc(var(--text-large) + 11px);
+	max-width: min-content;
+	background: transparent;
+	transition: 0.35s margin-left;
+	outline: none;
+}
+.input_name[is-editing='true'] iconify-icon.send {
+	display: block;
+}
+.input_name[is-editing='false'] iconify-icon.edit {
+	display: block;
+}
+
+.input_name:focus-within {
+	border-color: var(--on-primary);
+}
+.input_name:focus-within input {
+	margin-left: 0;
+	padding: 0 7px;
+	text-align: left;
+}
