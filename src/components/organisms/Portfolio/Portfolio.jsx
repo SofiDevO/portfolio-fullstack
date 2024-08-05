@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { getPortafolioData } from '../../../data/portfolioData';
-import Card from '@src/react/organisms/PortfolioCard/PortfolioCard';
-import { getIMGAverageColor } from '../../../utils/average-img-color/average-img-color';
+import { getPortafolioData } from '@data/portfolioData';
+import Card from '@organisms/PortfolioCard/PortfolioCard';
+import { getIMGAverageColor } from '@utils/average-img-color/average-img-color';
 import './portfolio.css';
-import MainTitle from '../../atoms/MainTitle';
+import MainTitle from '@atoms/MainTitle';
 import { PATHS } from '@src/constants/paths';
 const id = PATHS.INDEX_PORTFOLIO.replace('/#', '');
+
 const Portafolio = () => {
 	useEffect(() => {
 		const $cards = document.querySelectorAll('.card__portfolio');

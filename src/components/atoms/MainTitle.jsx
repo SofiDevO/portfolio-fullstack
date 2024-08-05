@@ -1,7 +1,7 @@
 
 const MainTitle = ({ contenido, margin }) => {
   return (
-    <h2 className="text-5xl font-medium color__gradiente" style={{ marginBottom: margin }}>
+    <h2 className={`text-5xl font-medium color__gradiente mb-[${margin}]`} >
       {contenido}
     </h2>
   );

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './profile.module.css';
 import { getUserInfo, updateUserService } from '@src/services';
-import { baseURL } from '@src/services/services';
+import { baseURL } from '@services/services';
 import { toast } from 'react-toastify';
 import { UI_TEXT } from '../ui/text';
 import { updateImgToastParams } from './configs/update_img_toast';

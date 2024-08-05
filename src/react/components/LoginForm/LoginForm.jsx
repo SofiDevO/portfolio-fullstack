@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { TextField } from '../TextField/TextField';
 import { UI_TEXT } from './ui/text';
 import { EMAIL_OPTIONS, PASSWORD_OPTIONS } from './utils/register-options';
-import { loginService } from '../../../services';
+import { loginService } from '@services/login.service';
 import { PATHS } from '@src/constants/paths';
 
 const LoginForm = () => {
@@ -30,7 +30,7 @@ const LoginForm = () => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} className="form-register">
+			<form onSubmit={handleSubmit(onSubmit)} className="form-register" noValidate>
 				<h2>{UI_TEXT.FORM_TITLE}</h2>
 				<TextField
 					id="email"
