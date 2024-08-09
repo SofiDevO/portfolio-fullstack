@@ -4,7 +4,7 @@ import BlogHome from '@organisms/BlogHome.astro';
 import { mainMenu } from '@data/menuData';
 import Footer from '@organisms/Footer/Footer.astro';
 import Header from '@organisms/header/Header.astro'
-import Hero from '@organisms/hero/Hero.astro';
+import Hero from '@src/components/organisms/hero/Hero';
 import Skills from '@organisms/skills/Skills.astro';
 import Layout from '@layouts/Layout.astro';
 import Portfolio from '@organisms/Portfolio/Portfolio';
@@ -13,7 +13,7 @@ import Portfolio from '@organisms/Portfolio/Portfolio';
 <Layout title="Jhon Doe | Fullstack Developer">
 	<Header origin={mainMenu} />
 	<main class="self-center w-full">
-		<Hero />
+		<Hero  client:load/>
 		<About />
 		<Skills />
 		<Portfolio client:load/>

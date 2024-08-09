@@ -1,5 +1,5 @@
 export const PATHS = {
-	INDEX: '/#',
+	INDEX: '/',
 	INDEX_BLOG: '/#blog',
 	INDEX_ABOUT_ME: '/#about',
 	INDEX_PORTFOLIO: '/#portfolio',

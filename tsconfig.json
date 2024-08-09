@@ -39,6 +39,9 @@
       "@utils/*": [
         "src/utils/*"
       ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
     },
     "jsxImportSource": "react"
   }
